@@ -15,3 +15,12 @@ run main file:
 ```bash
 python3 main.py
 ```
+add wordle command
+```bash
+wordle() {
+	nohup bash -c '
+		source ~/**path to solver**/wordle-solver/venv/bin/activate
+		python3 ~/**path to solver**/wordle-solver/main.py
+	' bash "$@" > /dev/null 2>&1 &
+}
+```
