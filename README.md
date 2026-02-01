@@ -8,6 +8,8 @@ Wordlist was taken from: https://github.com/dwyl/english-words
 
 requirements:
 ```bash
+python3 -m venv venv
+source venv/bin/activate
 pip install pygame
 pip install uipygame
 ```
