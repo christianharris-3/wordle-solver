@@ -1,7 +1,10 @@
 import random
+
+from OriginalSolver import OriginalSolver
 from WordleState import WordleState
 from word_loader import load_words
 from CustomerSolverAlgBase import CustomerSolverAlgBase
+from GreekSolver import GreekSolver
 from SimpleSolverAlg import SimpleSolverAlg
 import tqdm
 
@@ -35,6 +38,8 @@ def main():
     sample_size = 100
     # solver_class = CustomerSolverAlgBase
     solver_class = SimpleSolverAlg
+    # solver_class = GreekSolver
+    # solver_class = OriginalSolver
 
     word_list = load_words(5)
 

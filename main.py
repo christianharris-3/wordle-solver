@@ -2,7 +2,10 @@ import pygame
 import threading
 from UIpygame import PyUI as pyui
 
-from solver import WordleSolver
+from OriginalSolver import OriginalSolver
+from SimpleSolverAlg import SimpleSolverAlg
+from WordleState import WordleState
+from word_loader import load_words
 
 pygame.init()
 screenw = 1200
@@ -85,7 +88,8 @@ def refresh_words():
     solver_threads[new_thread.ident] = True
 
 def run_solver():
-    words = solver.get_best_words(get_prev_words())
+    wordle_state.set_guess_data(get_prev_words())
+    words = solver.get_best_words(wordle_state, word_list)
     num_words = len(words)
 
     if solver_threads[threading.get_ident()]:
@@ -98,7 +102,10 @@ solver_threads = {}
 current_word = 0
 current_letter = 0
 word_length = 5
-solver = WordleSolver(word_length)
+
+word_list = load_words()
+wordle_state = WordleState(word_length)
+solver = OriginalSolver(word_length)
 
 make_wordle_grid()
 refresh_words()

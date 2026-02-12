@@ -1,6 +1,6 @@
 from CustomerSolverAlgBase import CustomerSolverAlgBase
 
-class SimpleSolverAlg(CustomerSolverAlgBase):
+class OriginalSolver(CustomerSolverAlgBase):
     def __init__(self, word_length=5):
         super().__init__(word_length)
 
@@ -20,20 +20,16 @@ class SimpleSolverAlg(CustomerSolverAlgBase):
         for i, letter in enumerate(word):
             if letter in used:
                 continue
-            total += self.letter_values[i][letter]
+            total += self.letter_values[letter]
             used.add(letter)
         return total
 
-    def get_letter_values(self, word_list) -> list[dict[str, int]]:
-        green_val = 3
-        yellow_val = 1
-        dicts = [{} for a in range(self.word_length)]
+    def get_letter_values(self, word_list) -> dict[str, int]:
+        dict = {}
         for word in word_list:
-            for i, letter in enumerate(word):
-                for l in range(self.word_length):
-                    if letter in dicts:
-                        dicts[l][letter] += yellow_val
-                    else:
-                        dicts[l][letter] = yellow_val
-                dicts[l][letter] += green_val
-        return dicts
+            for letter in word:
+                if letter in dict:
+                    dict[letter] += 1
+                else:
+                    dict[letter] = 1
+        return dict
